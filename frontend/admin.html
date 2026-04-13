@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartEnroll Admin</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="background-orb orb-one"></div>
+  <div class="background-orb orb-two"></div>
+
+  <main class="page-shell admin-shell">
+    <aside class="admin-sidebar glass-card admin-entrance-card">
+      <div>
+        <p class="eyebrow">Admin Access</p>
+        <h1 class="sidebar-title">SmartEnroll Control Center</h1>
+        <p class="subtitle">
+          Full Registration Control for analytics, registrations, seat distribution, and live event monitoring.
+        </p>
+      </div>
+
+      <nav class="admin-nav">
+        <a href="#overview" class="admin-nav-link">Analytics</a>
+        <a href="#registrations" class="admin-nav-link">Registrations</a>
+        <a href="#distribution" class="admin-nav-link">Seat Distribution</a>
+        <a href="#activity" class="admin-nav-link">Live Activity</a>
+        <a href="#events" class="admin-nav-link">Recent Events</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="glass-card quick-meter">
+          <p class="stat-label">Live Seats</p>
+          <h3 id="sidebar-live-seats">0</h3>
+        </div>
+      </div>
+    </aside>
+
+    <section class="admin-content">
+      <section id="overview" class="admin-topbar admin-entrance-card">
+        <div>
+          <p class="eyebrow">Admin Dashboard</p>
+          <h2 class="section-title">Command view for real-time subject operations</h2>
+          <p class="subtitle">
+            Watch counters animate, inspect live trends, and manage registrations through a cleaner control experience.
+          </p>
+        </div>
+        <div class="admin-topbar-actions">
+          <button id="toggle-registration-form" class="admin-action-button" type="button">Register a Student</button>
+          <button id="admin-logout" class="logout-button admin-action-button" type="button">Logout</button>
+        </div>
+      </section>
+
+      <section class="summary-grid admin-summary-grid">
+        <article class="glass-card stat-card metric-card admin-entrance-card">
+          <p class="stat-label">Most Popular Subject</p>
+          <h3 id="popular-subject">No data yet</h3>
+          <div class="metric-progress">
+            <div id="popular-progress" class="metric-progress-fill accent-blue"></div>
+          </div>
+          <p id="popular-support" class="meta">Popularity ratio will appear here.</p>
+        </article>
+
+        <article class="glass-card stat-card metric-card admin-entrance-card">
+          <p class="stat-label">Peak Registration Time</p>
+          <h3 id="peak-time">No data yet</h3>
+          <div class="metric-progress">
+            <div id="peak-progress" class="metric-progress-fill accent-purple"></div>
+          </div>
+          <p id="peak-support" class="meta">Peak load intensity updates from batch results.</p>
+        </article>
+
+        <article class="glass-card stat-card metric-card admin-entrance-card">
+          <p class="stat-label">Total Registrations</p>
+          <h3 id="total-registrations">0</h3>
+          <div class="metric-progress">
+            <div id="registration-progress" class="metric-progress-fill accent-green"></div>
+          </div>
+          <p id="registration-support" class="meta">Total registrations across all subjects.</p>
+        </article>
+
+        <article class="glass-card stat-card metric-card admin-entrance-card">
+          <p class="stat-label">Seat Availability</p>
+          <h3 id="total-live-seats">0</h3>
+          <div class="metric-progress">
+            <div id="seat-progress" class="metric-progress-fill accent-cyan"></div>
+          </div>
+          <p id="seat-support" class="meta">Seats remaining across the full catalog.</p>
+        </article>
+      </section>
+
+      <section id="registrations" class="glass-card collapsible-panel admin-entrance-card">
+        <div class="collapsible-header">
+          <div>
+            <p class="eyebrow muted">Registrations</p>
+            <h2>Register a Student</h2>
+          </div>
+          <button id="collapse-registration-button" class="collapse-button" type="button" aria-expanded="true">
+            Hide Form
+          </button>
+        </div>
+
+        <div id="registration-form-wrapper" class="collapsible-body expanded">
+          <div class="collapsible-inner">
+            <p class="card-intro">Use this section to create registrations manually and test the live pipeline.</p>
+
+            <form id="admin-registration-form" class="registration-form admin-registration-grid">
+              <label for="admin_student_name">Student Name</label>
+              <input id="admin_student_name" type="text" placeholder="Enter student name" required />
+
+              <label for="admin_student_id">Student ID</label>
+              <input id="admin_student_id" type="text" placeholder="Example: 1SI23AD001" required />
+
+              <label for="admin_subject">Subject</label>
+              <select id="admin_subject" required></select>
+
+              <button id="admin-submit-button" class="admin-action-button" type="submit">Submit Registration</button>
+            </form>
+
+            <p id="admin-form-message" class="message" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="admin-dashboard-grid">
+        <article id="analytics" class="glass-card panel chart-panel admin-entrance-card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow muted">Analytics</p>
+              <h2>Subject popularity</h2>
+            </div>
+          </div>
+          <canvas id="popularity-chart"></canvas>
+        </article>
+
+        <article id="activity" class="glass-card panel chart-panel admin-entrance-card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow muted">Live Activity</p>
+              <h2>Registration trends</h2>
+            </div>
+          </div>
+          <canvas id="trends-chart"></canvas>
+        </article>
+
+        <article class="glass-card panel admin-entrance-card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow muted">Registrations</p>
+              <h2>Operational counters</h2>
+            </div>
+          </div>
+          <div class="counter-stack">
+            <div class="counter-tile">
+              <span class="counter-label">Total Registrations</span>
+              <strong id="counter-total-registrations">0</strong>
+            </div>
+            <div class="counter-tile">
+              <span class="counter-label">Live Queue Updates</span>
+              <strong id="counter-live-events">0</strong>
+            </div>
+            <div class="counter-tile">
+              <span class="counter-label">Subjects Tracked</span>
+              <strong id="counter-subjects">0</strong>
+            </div>
+          </div>
+        </article>
+
+        <article id="distribution" class="glass-card panel admin-entrance-card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow muted">Seat Distribution</p>
+              <h2>Live seats and load</h2>
+            </div>
+          </div>
+          <div class="distribution-layout">
+            <div class="seat-ring-wrap">
+              <div id="seat-ring" class="seat-ring">
+                <div class="seat-ring-inner">
+                  <span id="seat-ring-value">0%</span>
+                  <small>Seats Filled</small>
+                </div>
+              </div>
+            </div>
+            <div id="seat-distribution-list" class="distribution-list"></div>
+          </div>
+        </article>
+
+        <article class="glass-card panel admin-entrance-card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow muted">Live Seats</p>
+              <h2>Subject seat counts</h2>
+            </div>
+          </div>
+          <div id="admin-subject-cards" class="subject-grid"></div>
+        </article>
+
+        <article id="events" class="glass-card panel admin-entrance-card">
+          <div class="panel-head">
+            <div>
+              <p class="eyebrow muted">Recent Events</p>
+              <h2>Real-time registrations</h2>
+            </div>
+          </div>
+          <div id="recent-events" class="events-list live-feed"></div>
+        </article>
+      </section>
+    </section>
+  </main>
+
+  <script src="/static/auth.js"></script>
+  <script src="/static/admin.js"></script>
+</body>
+</html>

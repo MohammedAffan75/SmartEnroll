@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartEnroll Login</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="background-orb orb-one"></div>
+  <div class="background-orb orb-two"></div>
+
+  <main class="page-shell">
+    <section class="login-shell">
+      <div class="hero-panel glass-card">
+        <div class="hero-copy">
+          <p class="eyebrow">SmartEnroll Access Portal</p>
+          <h1>Choose your role and continue.</h1>
+          <p class="subtitle">
+            Students can register for subjects and view live seat updates. Admin can monitor analytics, registrations, and live activity.
+          </p>
+        </div>
+
+        <div class="glass-card form-card">
+          <h2>Login</h2>
+          <p class="card-intro">
+            Enter <strong>admin</strong> as the username for admin access. Any other name will be treated as student login.
+          </p>
+
+          <form id="login-form" class="registration-form">
+            <label for="login_identity">Username or Student Name</label>
+            <input id="login_identity" type="text" placeholder="Enter admin or student name" required />
+
+            <label for="login_secret" id="login-secret-label">Student ID</label>
+            <input id="login_secret" type="text" placeholder="Example: 1SI23AD001" required />
+
+            <button type="submit">Login</button>
+          </form>
+
+          <p id="login-message" class="message" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/auth.js"></script>
+  <script src="/static/login.js"></script>
+</body>
+</html>

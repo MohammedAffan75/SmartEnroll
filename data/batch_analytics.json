@@ -1,0 +1,35 @@
+{
+  "most_popular_subject": {
+    "subject": "Artificial Intelligence",
+    "registration_count": 1
+  },
+  "registrations_per_subject": [
+    {
+      "subject": "Artificial Intelligence",
+      "registration_count": 1
+    },
+    {
+      "subject": "Cyber Security",
+      "registration_count": 1
+    },
+    {
+      "subject": "Data Science",
+      "registration_count": 1
+    },
+    {
+      "subject": "Machine Learning",
+      "registration_count": 1
+    }
+  ],
+  "registration_trends": [
+    {
+      "trend_label": "2026-04-08 11:00",
+      "registration_count": 4
+    }
+  ],
+  "peak_registration_time": {
+    "time": "11:00",
+    "registration_count": 4
+  },
+  "total_registrations": 4
+}

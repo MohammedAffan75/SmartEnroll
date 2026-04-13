@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SmartEnroll Student</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="background-orb orb-one"></div>
+  <div class="background-orb orb-two"></div>
+
+  <main class="page-shell">
+    <section class="role-header glass-card">
+      <div>
+        <p class="eyebrow">Student Dashboard</p>
+        <h1 id="student-welcome">Welcome</h1>
+        <p class="subtitle">Register for a subject and track seat availability in real time.</p>
+      </div>
+      <button id="student-logout" class="logout-button" type="button">Logout</button>
+    </section>
+
+    <section class="student-grid">
+      <article class="glass-card form-card">
+        <h2>Subject Registration</h2>
+        <p class="card-intro">Your login details are already filled in below.</p>
+
+        <form id="student-registration-form" class="registration-form">
+          <label for="student_name">Student Name</label>
+          <input id="student_name" type="text" readonly />
+
+          <label for="student_id">Student ID</label>
+          <input id="student_id" type="text" readonly />
+
+          <label for="student_subject">Subject</label>
+          <select id="student_subject" required></select>
+
+          <button id="student-submit-button" type="submit">Register Subject</button>
+        </form>
+
+        <p id="student-form-message" class="message" aria-live="polite"></p>
+      </article>
+
+      <article class="glass-card panel">
+        <div>
+          <p class="eyebrow muted">Live Seats</p>
+          <h2>Available subjects</h2>
+        </div>
+        <div id="student-subject-cards" class="subject-grid"></div>
+      </article>
+    </section>
+  </main>
+
+  <script src="/static/auth.js"></script>
+  <script src="/static/student.js"></script>
+</body>
+</html>
