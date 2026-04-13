@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SmartEnroll: Student Subject Registration System using Lambda Architecture
 
 SmartEnroll is a beginner-friendly project that combines FastAPI, PostgreSQL, SQLAlchemy, a Python queue for real-time processing, Pandas for batch analytics, Chart.js for dashboards, and an optional Apache Kafka upgrade path.
